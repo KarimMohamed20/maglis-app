@@ -208,23 +208,23 @@ class _CorporateOrdersState extends State<CorporateOrders> {
             }
           }
           if (!isCalled) {
-          recomendations.addAll((snapshot.data.documents)
-              .map<String>((e) => e.data['name'].toString()));
-          names = (snapshot.data.documents)
-              .map<String>((e) => e.data['name'].toString())
-              .toList();
-          recomendations.addAll((snapshot.data.documents)
-              .map<String>((e) => e.data['address'].toString()));
-          address = (snapshot.data.documents)
-              .map<String>((e) => e.data['address'].toString())
-              .toList();
-          recomendations.addAll((snapshot.data.documents)
-              .map<String>((e) => e.data['phone'].toString()));
-          phones = (snapshot.data.documents)
-              .map<String>((e) => e.data['phone'].toString())
-              .toList();
-          isCalled = true;
-        }
+            recomendations.addAll((snapshot.data.documents)
+                .map<String>((e) => e.data['name'].toString()));
+            names = (snapshot.data.documents)
+                .map<String>((e) => e.data['name'].toString())
+                .toList();
+            recomendations.addAll((snapshot.data.documents)
+                .map<String>((e) => e.data['address'].toString()));
+            address = (snapshot.data.documents)
+                .map<String>((e) => e.data['address'].toString())
+                .toList();
+            recomendations.addAll((snapshot.data.documents)
+                .map<String>((e) => e.data['phone'].toString()));
+            phones = (snapshot.data.documents)
+                .map<String>((e) => e.data['phone'].toString())
+                .toList();
+            isCalled = true;
+          }
 
           return Scaffold(
             bottomNavigationBar: BottomNavigator(),
@@ -485,7 +485,7 @@ class _CorporateOrdersState extends State<CorporateOrders> {
                               onTap: () async {
                                 filterData = await Navigator.of(context)
                                     .pushNamed('/filter',
-                                      arguments: {'isCity': false}) as Map;
+                                        arguments: {'isCity': false}) as Map;
                                 print(filterData);
                                 setState(() {
                                   searched = false;
@@ -575,40 +575,41 @@ class _CorporateOrdersState extends State<CorporateOrders> {
                                         });
                                   },
                                   child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 1.0),
-                                      child: orderItem(
-                                          id: ordersData[i].documentID,
-                                          address:
-                                              ordersData[i].data['address'],
-                                          title:
-                                              '${ordersData[i].data['name']}',
-                                          price: ordersData[i]
-                                              .data['totalAccount'],
-                                          factoryName:
-                                              '${ordersData[i].data['line']}',
-                                          quantity:
-                                              ordersData[i].data['quantity'],
-                                          date:
-                                              '${ordersData[i].data['createdAt']}',
-                                          description:
-                                              '${ordersData[i].data['description']}',
-                                          phone:
-                                              '${ordersData[i].data['phone']}',
-                                          underAccount: ordersData[i]
-                                              .data['underAccount'],
-                                          number:
-                                              ordersData[i].data['orderNumber'],
-                                          line: '$line',
-                                          isChecked: checkedOrder.contains(
-                                              ordersData[i].documentID),
-                                          type: (ordersData[i].data['status'] ==
-                                                  'noAction' &&
-                                              ordersData[i].data['returned'] !=
-                                                  null &&
-                                              !ordersData[i].data['returned'] &&
-                                              user.type != 'sales' &&
-                                              user.type != 'warehouse'))),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 1.0),
+                                    child: orderItem(
+                                      id: ordersData[i].documentID,
+                                      address: ordersData[i].data['address'],
+                                      title: '${ordersData[i].data['name']}',
+                                      price: ordersData[i].data['totalAccount'],
+                                      factoryName:
+                                          '${ordersData[i].data['line']}',
+                                      quantity: ordersData[i].data['quantity'],
+                                      date:
+                                          '${ordersData[i].data['createdAt']}',
+                                      description:
+                                          '${ordersData[i].data['description']}',
+                                      phone: '${ordersData[i].data['phone']}',
+                                      underAccount:
+                                          ordersData[i].data['underAccount'],
+                                      number: ordersData[i].data['orderNumber'],
+                                      line: '$line',
+                                      isChecked: checkedOrder
+                                          .contains(ordersData[i].documentID),
+                                      type: (ordersData[i].data['status'] ==
+                                              'noAction' &&
+                                          ordersData[i].data['returned'] !=
+                                              null &&
+                                          !ordersData[i].data['returned'] &&
+                                          user.type != 'sales' &&
+                                          user.type != 'warehouse'),
+                                      issueCount:
+                                          ordersData[i].data['issueCount'],
+                                      notesCount:
+                                          (ordersData[i].data['notes'] as List)
+                                              .length,
+                                    ),
+                                  ),
                                 );
                               });
                             },
@@ -633,7 +634,9 @@ class _CorporateOrdersState extends State<CorporateOrders> {
       isChecked,
       type,
       address,
-      line}) {
+      line,
+      issueCount,
+      notesCount}) {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -787,6 +790,31 @@ class _CorporateOrdersState extends State<CorporateOrders> {
                   : SizedBox(),
               Text(
                 '${date}',
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              )
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                'Issues: ${issueCount == null ? 0 : issueCount}',
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+              isChecked != null && isChecked
+                  ? Icon(
+                      Icons.check_circle,
+                      color: Colors.green,
+                    )
+                  : SizedBox(),
+              Text(
+                'Notes: $notesCount',
                 style: TextStyle(
                     color: Colors.grey,
                     fontWeight: FontWeight.bold,

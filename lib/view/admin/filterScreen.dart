@@ -19,7 +19,8 @@ class _FilterScreenState extends State<FilterScreen> {
     'Rattan',
     'Travel accessories',
     'Luxurious chair',
-    'Wooden products'
+    'Wooden products',
+    'Beach'
   ];
   List<String> selectedLines = [];
   DateTime date = DateTime.now();

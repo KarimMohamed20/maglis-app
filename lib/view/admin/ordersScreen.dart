@@ -17,7 +17,8 @@ class _RevenueState extends State<OrderScreen> {
     'Rattan',
     'Travel accessories',
     'Luxurious chairs',
-    'Wooden products'
+    'Wooden products',
+    'Beach'
   ];
   @override
   Widget build(BuildContext context) {

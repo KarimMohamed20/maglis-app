@@ -412,6 +412,15 @@ class EditOrder extends StatelessWidget {
                                 });
                               },
                             ),
+                            DropdownMenuItem(
+                              child: Text('Beach'),
+                              value: 'Beach',
+                              onTap: () {
+                                setStated(() {
+                                  lineType = 'Beach';
+                                });
+                              },
+                            ),
                           ],
                           onChanged: (value) {
                             setStated(() {

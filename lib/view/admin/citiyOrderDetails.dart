@@ -46,7 +46,7 @@ class _CitiyOrderDetailsState extends State<CitiyOrderDetails> {
         orderNumber = snapshot.data.data['orderNumber'];
         isIssue = order['issued'];
         showMenu =
-            (order['status'] == 'noAction' || order['status'] == 'archived')
+              (order['status'] == 'noAction' || order['status'] == 'archived'||order['status'] == 'onDistribution')
                 ? true
                 : false;
         return Scaffold(

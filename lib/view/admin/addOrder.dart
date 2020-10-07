@@ -483,6 +483,15 @@ class _AddOrderState extends State<AddOrder> {
                               });
                             },
                           ),
+                           DropdownMenuItem(
+                            child: Text('Beach'),
+                            value: 'Beach',
+                            onTap: () {
+                              setState(() {
+                                lineType = 'Beach';
+                              });
+                            },
+                          ),
                         ],
                         onChanged: (value) {
                           setState(() {

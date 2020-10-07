@@ -716,30 +716,33 @@ class _CitiesOrdersState extends State<CitiesOrders> {
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 1.0),
                                 child: orderItem(
-                                    id: ordersData[i].documentID,
-                                    address: ordersData[i].data['address'],
-                                    title: '${ordersData[i].data['name']}',
-                                    price: ordersData[i].data['totalAccount'],
-                                    factoryName:
-                                        '${ordersData[i].data['line']}',
-                                    quantity: ordersData[i].data['quantity'],
-                                    date: '${ordersData[i].data['createdAt']}',
-                                    description:
-                                        '${ordersData[i].data['description']}',
-                                    phone: '${ordersData[i].data['phone']}',
-                                    underAccount:
-                                        ordersData[i].data['underAccount'],
-                                    number: ordersData[i].data['orderNumber'],
-                                    isChecked: checkedOrder
-                                        .contains(ordersData[i].documentID),
-                                    type: (ordersData[i].data['status'] ==
-                                            'noAction' &&
-                                        ordersData[i].data['returned'] !=
-                                            null &&
-                                        !ordersData[i].data['returned'] &&
-                                        user.type != 'sales' &&
-                                        user.type != 'warehouse'),
-                                    city: ordersData[i].data['city']),
+                                  id: ordersData[i].documentID,
+                                  address: ordersData[i].data['address'],
+                                  title: '${ordersData[i].data['name']}',
+                                  price: ordersData[i].data['totalAccount'],
+                                  factoryName: '${ordersData[i].data['line']}',
+                                  quantity: ordersData[i].data['quantity'],
+                                  date: '${ordersData[i].data['createdAt']}',
+                                  description:
+                                      '${ordersData[i].data['description']}',
+                                  phone: '${ordersData[i].data['phone']}',
+                                  underAccount:
+                                      ordersData[i].data['underAccount'],
+                                  number: ordersData[i].data['orderNumber'],
+                                  isChecked: checkedOrder
+                                      .contains(ordersData[i].documentID),
+                                  type: (ordersData[i].data['status'] ==
+                                          'noAction' &&
+                                      ordersData[i].data['returned'] != null &&
+                                      !ordersData[i].data['returned'] &&
+                                      user.type != 'sales' &&
+                                      user.type != 'warehouse'),
+                                  city: ordersData[i].data['city'],
+                                  issueCount: ordersData[i].data['issueCount'],
+                                  notesCount:
+                                      (ordersData[i].data['notes'] as List)
+                                          .length,
+                                ),
                               ),
                             );
                           });
@@ -765,7 +768,9 @@ class _CitiesOrdersState extends State<CitiesOrders> {
       isChecked,
       type,
       address,
-      city}) {
+      city,
+      issueCount,
+      notesCount}) {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -911,6 +916,31 @@ class _CitiesOrdersState extends State<CitiesOrders> {
                   : SizedBox(),
               Text(
                 '${date}',
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              )
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                'Issues: ${issueCount == null ? 0 : issueCount}',
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+              isChecked != null && isChecked
+                  ? Icon(
+                      Icons.check_circle,
+                      color: Colors.green,
+                    )
+                  : SizedBox(),
+              Text(
+                'Notes: $notesCount',
                 style: TextStyle(
                     color: Colors.grey,
                     fontWeight: FontWeight.bold,

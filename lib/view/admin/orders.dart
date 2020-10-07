@@ -50,7 +50,7 @@ class _OrdersPageState extends State<OrdersPage> {
     final areas = preference.getStringList('areas');
     final date = preference.getString('date');
     final month = preference.getInt('month');
-    filterData={};
+    filterData = {};
     if (areas != null && areas.length > 0) {
       filterData['areas'] = areas;
       firestoreQuery = firestoreQuery.where('area', whereIn: areas);
@@ -66,7 +66,7 @@ class _OrdersPageState extends State<OrdersPage> {
     if (month != null) {
       filterData['month'] = month;
     }
-    final snapshot =  await firestoreQuery.getDocuments();
+    final snapshot = await firestoreQuery.getDocuments();
     print(snapshot.documents.length);
     return snapshot;
   }
@@ -209,9 +209,9 @@ class _OrdersPageState extends State<OrdersPage> {
         orderstream = firestoreQuery.getDocuments();
       }
     }
-    
+
     return FutureBuilder<QuerySnapshot>(
-      future:orderstream,
+      future: orderstream,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting)
           return Center(
@@ -863,33 +863,38 @@ class _OrdersPageState extends State<OrdersPage> {
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 1.0),
                                   child: orderItem(
-                                      id: ordersData[i].documentID,
-                                      address: ordersData[i].data['address'],
-                                      title: '${ordersData[i].data['name']}',
-                                      price: ordersData[i].data['totalAccount'],
-                                      line: '${line}', //area
-                                      factoryName:
-                                          '${ordersData[i].data['line']}',
-                                      quantity: ordersData[i].data['quantity'],
-                                      date:
-                                          '${ordersData[i].data['createdAt']}',
-                                      description:
-                                          '${ordersData[i].data['description']}',
-                                      phone: '${ordersData[i].data['phone']}',
-                                      underAccount:
-                                          ordersData[i].data['underAccount'],
-                                      number: ordersData[i].data['orderNumber'],
-                                      isChecked: checkedOrder
-                                          .contains(ordersData[i].documentID),
-                                      type: (ordersData[i].data['status'] ==
-                                              'noAction' &&
-                                          ordersData[i].data['returned'] !=
-                                              null &&
-                                          !ordersData[i].data['returned'] &&
-                                          user.type != 'sales' &&
-                                          user.type != 'warehouse'),
-                                      downPayment:
-                                          ordersData[i].data['underAccount']),
+                                    id: ordersData[i].documentID,
+                                    address: ordersData[i].data['address'],
+                                    title: '${ordersData[i].data['name']}',
+                                    price: ordersData[i].data['totalAccount'],
+                                    line: '${line}', //area
+                                    factoryName:
+                                        '${ordersData[i].data['line']}',
+                                    quantity: ordersData[i].data['quantity'],
+                                    date: '${ordersData[i].data['createdAt']}',
+                                    description:
+                                        '${ordersData[i].data['description']}',
+                                    phone: '${ordersData[i].data['phone']}',
+                                    underAccount:
+                                        ordersData[i].data['underAccount'],
+                                    number: ordersData[i].data['orderNumber'],
+                                    isChecked: checkedOrder
+                                        .contains(ordersData[i].documentID),
+                                    type: (ordersData[i].data['status'] ==
+                                            'noAction' &&
+                                        ordersData[i].data['returned'] !=
+                                            null &&
+                                        !ordersData[i].data['returned'] &&
+                                        user.type != 'sales' &&
+                                        user.type != 'warehouse'),
+                                    downPayment:
+                                        ordersData[i].data['underAccount'],
+                                    issueCount:
+                                        ordersData[i].data['issueCount'],
+                                    notesCount:
+                                        (ordersData[i].data['notes'] as List)
+                                            .length,
+                                  ),
                                 ));
                           });
                         },
@@ -917,7 +922,9 @@ class _OrdersPageState extends State<OrdersPage> {
       isChecked,
       type,
       address,
-      downPayment}) {
+      downPayment,
+      issueCount,
+      notesCount}) {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -1081,6 +1088,31 @@ class _OrdersPageState extends State<OrdersPage> {
                   : SizedBox(),
               Text(
                 '${date}',
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              )
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                'Issues: ${issueCount == null ? 0 : issueCount}',
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+              isChecked != null && isChecked
+                  ? Icon(
+                      Icons.check_circle,
+                      color: Colors.green,
+                    )
+                  : SizedBox(),
+              Text(
+                'Notes: $notesCount',
                 style: TextStyle(
                     color: Colors.grey,
                     fontWeight: FontWeight.bold,

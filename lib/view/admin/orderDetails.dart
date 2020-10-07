@@ -45,7 +45,7 @@ class _OrderDetailsState extends State<OrderDetails> {
           orderNumber = snapshot.data.data['orderNumber'];
           isIssue = order['issued'];
           showMenu =
-              (order['status'] == 'noAction' || order['status'] == 'archived')
+              (order['status'] == 'noAction' || order['status'] == 'archived'||order['status'] == 'onDistribution')
                   ? true
                   : false;
 
