@@ -1,4 +1,4 @@
-package com.maglis.maglis_app
+package com.pjera.flutter
 
 import io.flutter.embedding.android.FlutterActivity
 

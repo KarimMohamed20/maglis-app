@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "660442958635",
-    "firebase_url": "https://magalis-51d6c.firebaseio.com",
-    "project_id": "magalis-51d6c",
-    "storage_bucket": "magalis-51d6c.appspot.com"
+    "project_number": "395562029383",
+    "firebase_url": "https://preja-f29b4.firebaseio.com",
+    "project_id": "preja-f29b4",
+    "storage_bucket": "preja-f29b4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:660442958635:android:d9071cb8b8c047c142d36e",
+        "mobilesdk_app_id": "1:395562029383:android:572d9774700a74def2fc62",
         "android_client_info": {
-          "package_name": "com.maglis.maglis_app"
+          "package_name": "com.pjera.flutter"
         }
       },
       "oauth_client": [
         {
-          "client_id": "660442958635-6n0p1i0vpkclibf3n34h1f8l29717af6.apps.googleusercontent.com",
+          "client_id": "395562029383-bmduj8no9n61ikc6oo04kpipb1th6cce.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.maglis.maglis_app",
-            "certificate_hash": "648813f15134b8b5adaeb0e4189622dd29fadf66"
+            "package_name": "com.pjera.flutter",
+            "certificate_hash": "2a497e864ef75f5f18f98a0bc6b983cc59cd8a99"
           }
         },
         {
-          "client_id": "660442958635-dbajm2ojjntdu0t2u7ued81v7glrrid4.apps.googleusercontent.com",
+          "client_id": "395562029383-eiidkorbp0fa6auk7m7f0nk3c85em42q.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBX-jOE2Cr5nVr5fC_e_dSY-OLGPWxyRRI"
+          "current_key": "AIzaSyDNDV59mCOTtuWFjhU2HvBKomsbXLttuiU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "660442958635-dbajm2ojjntdu0t2u7ued81v7glrrid4.apps.googleusercontent.com",
+              "client_id": "395562029383-eiidkorbp0fa6auk7m7f0nk3c85em42q.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
