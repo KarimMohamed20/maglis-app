@@ -312,74 +312,7 @@ class _AddOrderState extends State<AddOrder> {
                       ],
                     ),
                   ),
-                  selected == 'Cairo'
-                      ? Container(
-                          padding: EdgeInsets.all(16),
-                          margin: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              border: Border.all(
-                                  width: 3.5,
-                                  color: Colors.grey.withOpacity(0.5)),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text(
-                                'Area',
-                                style: TextStyle(
-                                    color: Color.fromRGBO(170, 44, 94, 1),
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20),
-                              ),
-                              Divider(
-                                color: Color.fromRGBO(128, 151, 155, 0.6),
-                                thickness: 2.5,
-                              ),
-                              AutoCompleteTextField<String>(
-                                controller: areaController,
-                                decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                      borderSide: BorderSide(
-                                          color: Colors.grey, width: 1.5),
-                                    ),
-                                    hintText: 'Search Areas:',
-                                    suffixIcon: Icon(Icons.search)),
-                                itemSubmitted: (item) =>
-                                    setState(() => areaSelected = item),
-                                textSubmitted: (item) {
-                                  print('itemss:$item');
-                                  setState(() {
-                                    areaSelected = item;
-                                  });
-                                },
-                                textChanged: (item) {
-                                  print('itesmss:$item');
-                                  areaSelected = item;
-                                },
-                                key: areaKey,
-                                suggestions: areas
-                                    .map<String>(
-                                        (element) => element.toString())
-                                    .toList(),
-                                itemBuilder: (context, suggestion) =>
-                                    new Padding(
-                                        child: new ListTile(
-                                          title: new Text(suggestion),
-                                        ),
-                                        padding: EdgeInsets.all(8.0)),
-                                itemFilter: (suggestion, input) => suggestion
-                                    .toLowerCase()
-                                    .startsWith(input.toLowerCase()),
-                                itemSorter: (a, b) =>
-                                    a == b ? 0 : a.length > b.length ? -1 : 1,
-                              )
-                            ],
-                          ),
-                        )
-                      : SizedBox(),
+                 
                   Container(
                     padding: EdgeInsets.all(16),
                     margin: EdgeInsets.all(10),
@@ -746,43 +679,14 @@ class _AddOrderState extends State<AddOrder> {
                                 ));
                         return;
                       }
-                      if (selected == 'Cairo' && areaController.text.isEmpty) {
-                        showDialog(
-                            context: context,
-                            builder: (ctx) => AlertDialog(
-                                  title: Text('Validation Error'),
-                                  content: Text('Please select order\'s area'),
-                                  actions: <Widget>[
-                                    FlatButton(
-                                        onPressed: () =>
-                                            Navigator.of(context).pop(),
-                                        child: Text('Ok!'))
-                                  ],
-                                ));
-                        return;
-                      }
+                     
 
                       String name = nameController.text;
                       int quantity = int.parse(quantityController.text);
                       String area = areaController.text;
                       String address = addressController.text;
 
-                      if (!areas.contains(area)&& selected == 'Cairo'&& area.isNotEmpty&& area!='null') {
-                        showDialog(
-                            context: context,
-                            builder: (ctx) => AlertDialog(
-                                  title: Text('Validation Error'),
-                                  content: Text(
-                                      'This area is not recognised in the System'),
-                                  actions: <Widget>[
-                                    FlatButton(
-                                        onPressed: () =>
-                                            Navigator.of(context).pop(),
-                                        child: Text('Ok!'))
-                                  ],
-                                ));
-                        return;
-                      }
+                      
                       String description = descriptionConroller.text;
                       String phoneNumber = phoneController.text;
                       double amount = double.parse(priceController.text);
@@ -816,29 +720,7 @@ class _AddOrderState extends State<AddOrder> {
                             {'note': noteController.text, 'from': user.name});
                       }
 
-                      if (selected.toLowerCase() == 'cairo') {
-                        await Firestore.instance.collection('orders').add({
-                          'time': DateTime.now(),
-                          'city': selected,
-                          'notes': note,
-                          'area': area,
-                          'createdAt': date,
-                          'description': description,
-                          'line': lineType,
-                          'name': name,
-                          'phone': phoneNumber,
-                          'quantity': quantity,
-                          'totalAccount': amount,
-                          'underAccount': downpayment,
-                          'address': address,
-                          'status': 'noAction',
-                          'isCairo': true,
-                          'isCorporate': isCorporate,
-                          'issued': false,
-                          'returned': false,
-                          'channel': channel,
-                        });
-                      } else {
+                      
                         await Firestore.instance.collection('orders').add({
                           'time': DateTime.now(),
                           'city': selected,
@@ -859,7 +741,7 @@ class _AddOrderState extends State<AddOrder> {
                           'returned': false,
                           'channel': channel,
                         });
-                      }
+                      
                       await showDialog(
                         context: context,
                         child: AlertDialog(
