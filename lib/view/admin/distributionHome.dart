@@ -52,39 +52,6 @@ class _DistributionState extends State<DistributionHome> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       InkWell(
-                        onTap: () =>
-                            Navigator.of(context).pushNamed('/distribution'),
-                        child: Container(
-                          width: size.width / 2.25,
-                          height: 170,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            border:
-                                Border.all(width: 2.5, color: Colors.grey[400]),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Container(
-                                child:
-                                    Image.asset('assets/images/LineIcon.png'),
-                                width: 100,
-                                height: 100,
-                              ),
-                              Text(
-                                'Cairo',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    color: Color.fromRGBO(134, 134, 134, 1),
-                                    fontWeight: FontWeight.bold),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      InkWell(
                         onTap: () => Navigator.of(context)
                             .pushNamed('/distributionCities'),
                         child: Container(
@@ -117,18 +84,10 @@ class _DistributionState extends State<DistributionHome> {
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                ),
-                user.type == 'admin' || user.type == 'warehouse'||
-                                      user.type == 'operation'
-                    ? Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            InkWell(
+                      user.type == 'admin' ||
+                              user.type == 'warehouse' ||
+                              user.type == 'operation'
+                          ? InkWell(
                               onTap: () => Navigator.of(context)
                                   .pushNamed('/corporateHome'),
                               child: Container(
@@ -161,11 +120,11 @@ class _DistributionState extends State<DistributionHome> {
                                   ],
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      )
-                    : SizedBox(),
+                            )
+                          : SizedBox(),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

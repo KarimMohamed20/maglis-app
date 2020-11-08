@@ -28,7 +28,7 @@ class EditOrder extends StatelessWidget {
 
   String selected = '';
 
-  String lineType = 'Bean Bags';
+  String lineType = 'Pajamas';
 
   bool loading = false;
   final goverments = [
@@ -368,59 +368,42 @@ class EditOrder extends StatelessWidget {
                           //value: lineType,
                           items: [
                             DropdownMenuItem(
-                              child: Text('Bean Bags'),
-                              value: 'Bean Bags',
+                              child: Text('Pajamas'),
+                              value: 'Pajamas',
                               onTap: () {
                                 setStated(() {
-                                  lineType = 'Bean Bags';
+                                  lineType = 'Pajamas';
                                 });
                               },
                             ),
                             DropdownMenuItem(
-                              child: Text('Rattan'),
-                              value: 'Rattan',
+                              child: Text('Pants'),
+                              value: 'Pants',
                               onTap: () {
                                 setStated(() {
-                                  lineType = 'Rattan';
+                                  lineType = 'Pants';
                                 });
                               },
                             ),
                             DropdownMenuItem(
-                              child: Text('Travel accessories'),
-                              value: 'Travel accessories',
+                              child: Text('Slipper'),
+                              value: 'Slipper',
                               onTap: () {
                                 setStated(() {
-                                  lineType = 'Travel accessories';
+                                  lineType = 'Slipper';
                                 });
                               },
                             ),
                             DropdownMenuItem(
-                              child: Text('Luxurious chairs'),
-                              value: 'Luxurious chairs',
+                              child: Text('Blankets'),
+                              value: 'Blankets',
                               onTap: () {
                                 setStated(() {
-                                  lineType = 'Luxurious chairs';
+                                  lineType = 'Blankets';
                                 });
                               },
                             ),
-                            DropdownMenuItem(
-                              child: Text('Wooden products'),
-                              value: 'Wooden products',
-                              onTap: () {
-                                setStated(() {
-                                  lineType = 'Wooden products';
-                                });
-                              },
-                            ),
-                            DropdownMenuItem(
-                              child: Text('Beach'),
-                              value: 'Beach',
-                              onTap: () {
-                                setStated(() {
-                                  lineType = 'Beach';
-                                });
-                              },
-                            ),
+                            
                           ],
                           onChanged: (value) {
                             setStated(() {

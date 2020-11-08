@@ -15,12 +15,10 @@ class _FilterScreenState extends State<FilterScreen> {
   List<String> areas = [];
   List<String> selectedAreas = [];
   List<String> lines = [
-    'Bean Bags',
-    'Rattan',
-    'Travel accessories',
-    'Luxurious chair',
-    'Wooden products',
-    'Beach'
+    'Pajamas',
+    'Pants',
+    'Slipper',
+    'Blankets',
   ];
   List<String> selectedLines = [];
   DateTime date = DateTime.now();

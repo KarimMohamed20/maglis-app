@@ -51,11 +51,7 @@ class _OrdersPageState extends State<OrdersPage> {
     final date = preference.getString('date');
     final month = preference.getInt('month');
     filterData = {};
-    if (areas != null && areas.length > 0) {
-      filterData['areas'] = areas;
-      firestoreQuery = firestoreQuery.where('area', whereIn: areas);
-    }
-
+   
     if (date != null && date.isNotEmpty) {
       filterData['date'] = date;
       firestoreQuery = firestoreQuery.where('createdAt', isEqualTo: date);
@@ -89,102 +85,102 @@ class _OrdersPageState extends State<OrdersPage> {
                 .collection('orders')
                 .where('status', isEqualTo: map['status'])
                 .where('area', isEqualTo: map['date'])
-                .where('isCairo', isEqualTo: true)
+                .where('isCairo', isEqualTo: false)
                 .where('isCorporate', isEqualTo: false)
                 .getDocuments();
             orderQuery = Firestore.instance
                 .collection('orders')
                 .where('status', isEqualTo: map['status'])
                 .where('area', isEqualTo: map['date'])
-                .where('isCairo', isEqualTo: true)
+                .where('isCairo', isEqualTo: false)
                 .where('isCorporate', isEqualTo: false);
           } else if (map['type'] == 2) {
             orderstream = Firestore.instance
                 .collection('orders')
                 .where('status', isEqualTo: map['status'])
                 .where('createdAt', isEqualTo: map['date'])
-                .where('isCairo', isEqualTo: true)
+                .where('isCairo', isEqualTo: false)
                 .where('isCorporate', isEqualTo: false)
                 .getDocuments();
             orderQuery = Firestore.instance
                 .collection('orders')
                 .where('status', isEqualTo: map['status'])
                 .where('createdAt', isEqualTo: map['date'])
-                .where('isCairo', isEqualTo: true)
+                .where('isCairo', isEqualTo: false)
                 .where('isCorporate', isEqualTo: false);
           } else if (map['type'] == 3) {
             orderstream = Firestore.instance
                 .collection('orders')
                 .where('status', isEqualTo: map['status'])
                 .where('line', isEqualTo: map['date'])
-                .where('isCairo', isEqualTo: true)
+                .where('isCairo', isEqualTo: false)
                 .where('isCorporate', isEqualTo: false)
                 .getDocuments();
             orderQuery = Firestore.instance
                 .collection('orders')
                 .where('status', isEqualTo: map['status'])
                 .where('line', isEqualTo: map['date'])
-                .where('isCairo', isEqualTo: true)
+                .where('isCairo', isEqualTo: false)
                 .where('isCorporate', isEqualTo: false);
           } else if (map['type'] == 4) {
             orderstream = Firestore.instance
                 .collection('orders')
                 .where('status', isEqualTo: map['status'])
-                .where('isCairo', isEqualTo: true)
+                .where('isCairo', isEqualTo: false)
                 .where('isCorporate', isEqualTo: false)
                 .getDocuments();
             orderQuery = Firestore.instance
                 .collection('orders')
                 .where('status', isEqualTo: map['status'])
-                .where('isCairo', isEqualTo: true)
+                .where('isCairo', isEqualTo: false)
                 .where('isCorporate', isEqualTo: false);
           } else if (map['type'] == 7) {
             orderstream = Firestore.instance
                 .collection('orders')
                 .where('status', whereIn: map['status'])
-                .where('isCairo', isEqualTo: true)
+                .where('isCairo', isEqualTo: false)
                 .where('isCorporate', isEqualTo: false)
                 .getDocuments();
             orderQuery = Firestore.instance
                 .collection('orders')
                 .where('status', isEqualTo: map['status'])
-                .where('isCairo', isEqualTo: true)
+                .where('isCairo', isEqualTo: false)
                 .where('isCorporate', isEqualTo: false);
           } else if (map['follow'] != null && map['follow']) {
             orderstream = Firestore.instance
                 .collection('orders')
-                .where('isCairo', isEqualTo: true)
+                .where('isCairo', isEqualTo: false)
                 .where('isCorporate', isEqualTo: false)
                 .where('follow', isEqualTo: true)
                 .getDocuments();
             orderQuery = Firestore.instance
                 .collection('orders')
                 .where('status', isEqualTo: map['status'])
-                .where('isCairo', isEqualTo: true)
+                .where('isCairo', isEqualTo: false)
                 .where('isCorporate', isEqualTo: false)
                 .where('follow', isEqualTo: true);
           } else {
             orderstream = Firestore.instance
                 .collection('orders')
                 .where('status', isEqualTo: map['status'])
-                .where('isCairo', isEqualTo: true)
+                .where('isCairo', isEqualTo: false)
                 .where('isCorporate', isEqualTo: false)
                 .getDocuments();
             orderQuery = Firestore.instance
                 .collection('orders')
                 .where('status', isEqualTo: map['status'])
-                .where('isCairo', isEqualTo: true)
+                .where('isCairo', isEqualTo: false)
                 .where('isCorporate', isEqualTo: false);
           }
         } else {
           orderstream = Firestore.instance
               .collection('orders')
-              .where('isCairo', isEqualTo: true)
+              .where('isCairo', isEqualTo: false)
               .where('isCorporate', isEqualTo: false)
               .getDocuments();
           orderQuery = Firestore.instance
               .collection('orders')
-              .where('isCairo', isEqualTo: true)
+              .where('isCairo', isEqualTo: false)
               .where('isCorporate', isEqualTo: false);
         }
       } else {
@@ -193,7 +189,7 @@ class _OrdersPageState extends State<OrdersPage> {
 
         Query firestoreQuery = Firestore.instance
             .collection('orders')
-            .where('isCairo', isEqualTo: true)
+            .where('isCairo', isEqualTo: false)
             .where('isCorporate', isEqualTo: false);
         if (areas != null && areas.length > 0) {
           firestoreQuery = firestoreQuery.where('area', whereIn: areas);

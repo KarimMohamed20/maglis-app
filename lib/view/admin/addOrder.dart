@@ -34,7 +34,7 @@ class _AddOrderState extends State<AddOrder> {
   TextEditingController cityController = TextEditingController();
   TextEditingController channelController = TextEditingController();
 
-  String lineType = 'Bean Bags';
+  String lineType = 'Pajamas';
 
   Channel channel;
   bool loading = false;
@@ -85,18 +85,7 @@ class _AddOrderState extends State<AddOrder> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     //final user =Provider.of<UserProvider>(context).user;
-    if (!isFinished) {
-      Firestore.instance
-          .collection('myInfo')
-          .document('area')
-          .get()
-          .then((value) {
-        setState(() {
-          areas = value.data['areas'];
-          isFinished = true;
-        });
-      });
-    }
+    
     cityController.text = selected;
     areaController.text = areaSelected;
     return Scaffold(
@@ -370,62 +359,45 @@ class _AddOrderState extends State<AddOrder> {
                           size: 35,
                         ),
                         //value: lineType,
-                        items: [
-                          DropdownMenuItem(
-                            child: Text('Bean Bags'),
-                            value: 'Bean Bags',
-                            onTap: () {
-                              setState(() {
-                                lineType = 'Bean Bags';
-                              });
-                            },
-                          ),
-                          DropdownMenuItem(
-                            child: Text('Rattan'),
-                            value: 'Rattan',
-                            onTap: () {
-                              setState(() {
-                                lineType = 'Rattan';
-                              });
-                            },
-                          ),
-                          DropdownMenuItem(
-                            child: Text('Travel accessories'),
-                            value: 'Travel accessories',
-                            onTap: () {
-                              setState(() {
-                                lineType = 'Travel accessories';
-                              });
-                            },
-                          ),
-                          DropdownMenuItem(
-                            child: Text('Luxurious chairs'),
-                            value: 'Luxurious chairs',
-                            onTap: () {
-                              setState(() {
-                                lineType = 'Luxurious chairs';
-                              });
-                            },
-                          ),
-                          DropdownMenuItem(
-                            child: Text('Wooden products'),
-                            value: 'Wooden products',
-                            onTap: () {
-                              setState(() {
-                                lineType = 'Wooden products';
-                              });
-                            },
-                          ),
-                           DropdownMenuItem(
-                            child: Text('Beach'),
-                            value: 'Beach',
-                            onTap: () {
-                              setState(() {
-                                lineType = 'Beach';
-                              });
-                            },
-                          ),
-                        ],
+                        items:[
+                            DropdownMenuItem(
+                              child: Text('Pajamas'),
+                              value: 'Pajamas',
+                              onTap: () {
+                                setState(() {
+                                  lineType = 'Pajamas';
+                                });
+                              },
+                            ),
+                            DropdownMenuItem(
+                              child: Text('Pants'),
+                              value: 'Pants',
+                              onTap: () {
+                                setState(() {
+                                  lineType = 'Pants';
+                                });
+                              },
+                            ),
+                            DropdownMenuItem(
+                              child: Text('Slipper'),
+                              value: 'Slipper',
+                              onTap: () {
+                                setState(() {
+                                  lineType = 'Slipper';
+                                });
+                              },
+                            ),
+                            DropdownMenuItem(
+                              child: Text('Blankets'),
+                              value: 'Blankets',
+                              onTap: () {
+                                setState(() {
+                                  lineType = 'Blankets';
+                                });
+                              },
+                            ),
+                            
+                          ],
                         onChanged: (value) {
                           setState(() {
                             lineType = value;

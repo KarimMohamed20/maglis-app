@@ -13,12 +13,10 @@ class _RevenueState extends State<OrderScreen> {
   List<String> dates = [];
   List<String> areas = [];
   List<String> lines = [
-    'Bean Bags',
-    'Rattan',
-    'Travel accessories',
-    'Luxurious chairs',
-    'Wooden products',
-    'Beach'
+    'Pajamas',
+    'Pants',
+    'Slipper',
+    'Blankets',
   ];
   @override
   Widget build(BuildContext context) {
